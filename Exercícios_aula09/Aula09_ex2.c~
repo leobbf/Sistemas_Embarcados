@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <fcntl.h>	// Para a funcao open()
+#include <unistd.h>	// Para a funcao close()
+#include <stdlib.h>	// Para a função exit()
+#include <string.h> // Para funções com string
+#include <sys/types.h> //para função system()
+#include <signal.h> //para sinais
+#include <pthread.h> // para thread 
+#include <time.h> //para função time(NULL)
+
+#define linha 10
+#define coluna 10
+
+struct matrizes{
+	
+	long int A[linha][coluna];
+	long int B[linha][coluna];
+	long int C[linha][coluna];
+
+}typedef matrizes;
+
+	//estrutura global
+	matrizes mtz;
+
+void num_aleatorios(long int A[linha][coluna], long int B[linha][coluna]){
+
+		int i, j;
+
+		srand(time(NULL));
+
+		for(i=0; i<linha; i++){
+			for(j=0; j<coluna; j++){
+			
+				A[i][j] = rand() % 10;
+				B[i][j] = rand() % 10;
+
+			}
+		}
+}
+
+void printar(long int matriz[linha][coluna]){
+
+		int i, j;
+
+		printf("\n");
+
+		for(i=0; i<linha; i++){
+			for(j=0; j<coluna; j++){
+			
+				printf("%ld ", matriz[i][j]);
+			}
+
+			printf("\n");
+		}
+}
+
+int main(int argc, char **argv){
+
+	num_aleatorios(mtz.A, mtz.B);
+
+	printar(mtz.A);
+	printar(mtz.B);
+	
+	
+	
+	
+return 0; 
+}
